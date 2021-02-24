@@ -21,7 +21,7 @@ app.use(
         secret: "superSecred",
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 3600000, secure: false, httpOnly: true },
+        cookie: { maxAge: 3600000, secure: false, httpOnly: true, sameSite: "lax" },
         store: dbStore,
     })
 );
