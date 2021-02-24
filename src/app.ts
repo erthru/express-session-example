@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
-app.use(session({ secret: "superSecred", resave: true, saveUninitialized: true, cookie: { secure: false, httpOnly: false }, store: dbStore }));
+app.use(session({ secret: "superSecred", resave: false, saveUninitialized: false, store: dbStore }));
 app.use(routes);
 
 const server = createServer(app);
