@@ -4,12 +4,9 @@ import cors from "cors";
 import routes from "./routes";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import MongoDBStore from "connect-mongodb-session";
 
 const app = express();
 const PORT = 3003;
-const DBStore = MongoDBStore(session);
-const dbStore = new DBStore({ uri: "mongodb://localhost:27017/express-session-example", collection: "sessions" });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,8 +18,7 @@ app.use(
         secret: "superSecred",
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 3600000, secure: false, httpOnly: true, sameSite: "lax" },
-        store: dbStore,
+        cookie: { maxAge: 36000000, secure: false, httpOnly: true },
     })
 );
 app.use(routes);
