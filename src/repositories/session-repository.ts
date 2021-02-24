@@ -4,6 +4,7 @@ export const get = (req: Request, res: Response) => {
     try {
         res.status(200).json({
             session: req.session,
+            sessionId: req.sessionID,
         });
     } catch (e: any) {
         res.status(500).json({
@@ -18,6 +19,7 @@ export const add = (req: Request, res: Response) => {
 
         res.status(201).json({
             session: req.session,
+            sessionId: req.sessionID,
         });
     } catch (e: any) {
         res.status(500).json({
