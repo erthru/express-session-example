@@ -1,18 +1,25 @@
 import express from "express";
 import { createServer } from "http";
-import cors from "cors";
 import routes from "./routes";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import cors from "cors";
 
 const app = express();
 const PORT = 3003;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: ["http://localhost:3000", "http://127.0.0.1:3000"], credentials: true }));
+app.use(cors({ origin: "http://127.0.0.1:3003", credentials: true }));
 app.use(cookieParser());
-app.use(session({ secret: "superSecred", resave: false, saveUninitialized: false, cookie: { secure: false, httpOnly: true } }));
+app.use(
+    session({
+        secret: "superSecred",
+        resave: true,
+        saveUninitialized: false,
+        cookie: { secure: false, httpOnly: false },
+    })
+);
 app.use(routes);
 
 const server = createServer(app);
